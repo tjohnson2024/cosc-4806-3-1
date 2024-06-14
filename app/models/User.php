@@ -19,8 +19,8 @@ Class User {
         $statement = $db->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
         $statement->execute(array(':username' => $username, ':password' => $hashed_password));
 
-        return "User created successfully";
-        header("Location: /home/index.php");
+        // Redirect to home page after successful user creation
+        header("Location: /index.php");
         exit;
     }
 
@@ -38,7 +38,10 @@ Class User {
         if (password_verify($password, $user['password'])) {
             $this->logAttempt($username, 'good');
             return "Login successful";
-        } else {
+        }
+            
+        else
+        {
             // Log the failed attempt and handle lockout
             $this->logAttempt($username, 'bad');
             return $this->handleLockout($username);

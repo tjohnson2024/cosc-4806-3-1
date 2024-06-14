@@ -12,6 +12,7 @@
         <div class="col-sm-auto">
             <form action="/create/verify" method="post">
                 <fieldset>
+                    <input type="hidden" name="action" value="create"> <!-- Hidden input field for action -->
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input required type="text" class="form-control" name="username">
@@ -27,5 +28,6 @@
             </form>
         </div>
     </div>
+
 
 <?php require_once 'app/views/templates/footer.php' ?>
