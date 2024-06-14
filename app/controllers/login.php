@@ -20,7 +20,7 @@ class Login extends Controller {
 			// Check if login was successful
 			if ($login_result === "Login successful") {
 					// Redirect to home/index page
-					header("Location: /home/index");
+					header("Location: app/views/home/index");
 					exit(); // Ensure script execution stops after redirect
 			} else {
 					// Output the result for unsuccessful login (you might handle this differently)

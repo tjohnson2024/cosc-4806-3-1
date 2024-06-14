@@ -2,28 +2,23 @@
 
 class App {
 
-    protected $controller = 'login';
+    protected $controller = 'home';
     protected $method = 'index';
     protected $special_url = ['apply'];
     protected $params = [];
 
     public function __construct() {
-        if (isset($_SESSION['auth']) == 1) {
-            //$this->method = 'index';
-            $this->controller = 'home';
+        // Check if the user is authenticated
+        if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
+            $this->controller = 'home'; // Set default controller to 'home'
         } 
 
-        // This will return a broken up URL
-        // it will be /controller/method
+        // Parse the URL
         $url = $this->parseUrl();
 
-        /* if controller exists in the URL, then go to it
-         * if not, then go to this->controller which is defaulted to home 
-         */
-
+        // Check if the controller exists in the URL
         if (file_exists('app/controllers/' . $url[1] . '.php')) {
             $this->controller = $url[1];
-
             $_SESSION['controller'] = $this->controller;
 
             /* This is if we have a special URL in the index.
@@ -36,29 +31,31 @@ class App {
             }
             unset($url[1]);
         } else {
-            header('Location: /home');
-            die;
+            // Redirect to the default home index page
+            header('Location: app/views/home/index.php');
+            exit;
         }
 
+        // Require the controller file
         require_once 'app/controllers/' . $this->controller . '.php';
 
+        // Instantiate the controller
         $this->controller = new $this->controller;
 
-        // check to see if method is passed
-        // check to see if it exists
-        if (isset($url[2])) {
-            if (method_exists($this->controller, $url[2])) {
-                $this->method = $url[2];
-                $_SESSION['method'] = $this->method;
-                unset($url[2]);
-            }
+        // Check if method is passed in the URL
+        if (isset($url[2]) && method_exists($this->controller, $url[2])) {
+            $this->method = $url[2];
+            $_SESSION['method'] = $this->method;
+            unset($url[2]);
         }
 
-        // This will rebase the params to a new array (starting at 0)
-        // if params exist
+        // Rebase the params array starting at index 0
         $this->params = $url ? array_values($url) : [];
-        call_user_func_array([$this->controller, $this->method], $this->params);		
+
+        // Call the controller method with parameters
+        call_user_func_array([$this->controller, $this->method], $this->params);      
     }
+
 
     public function parseUrl() {
         $u = "{$_SERVER['REQUEST_URI']}";

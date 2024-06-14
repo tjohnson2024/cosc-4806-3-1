@@ -37,7 +37,9 @@ Class User {
         // Verify password hash
         if (password_verify($password, $user['password'])) {
             $this->logAttempt($username, 'good');
-            return "Login successful";
+            //return "Login successful";
+            header("Location: /app/views/home/index.php");
+            exit;
         }
             
         else
