@@ -1,7 +1,9 @@
 <?php
-if (!isset($_SESSION['auth'])) {
-    header('Location: /login');
-}
+session_start();
+
+//if (!isset($_SESSION['auth'])) {
+  //  header('Location: /login');
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en">

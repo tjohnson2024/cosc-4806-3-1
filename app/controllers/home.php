@@ -28,7 +28,7 @@ class Home extends Controller {
             }
         } else {
             // If form is not submitted, load the login form view
-            $this->view('home/index');
+            $this->view('/home/runner/cosc-4806-3/app/views/home/index');
         }
     }
 
