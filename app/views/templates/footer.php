@@ -1,7 +1,9 @@
-<footer class="footer">    
-    <div class="row">
-        <div class="col-lg-12">
-            <p>Copyright &copy; <?php echo date('Y'); ?> </p>
+<footer class="footer mt-auto" style="position:relative; top:100px;"> <!-- Add 'mt-auto' to push the footer to the bottom of the container -->
+    <div class="container"> <!-- Wrap footer content in a container for proper alignment -->
+        <div class="row">
+            <div class="col-lg-12 text-center"> <!-- Center the content using text-center class -->
+                <p>Copyright &copy; <?php echo date('Y'); ?> </p>
+            </div>
         </div>
     </div>
 </footer>

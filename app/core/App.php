@@ -11,6 +11,7 @@ class App {
         // Check if the user is authenticated
         if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
             $this->controller = 'home'; // Set default controller to 'home'
+            
         } 
 
         // Parse the URL

@@ -4,6 +4,7 @@ require_once 'app/models/User.php';
 class Home extends Controller {
 
     
+    
     public function index() {
         // Check if form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -28,7 +29,7 @@ class Home extends Controller {
             }
         } else {
             // If form is not submitted, load the login form view
-            $this->view('/home/runner/cosc-4806-3/app/views/home/index');
+            $this->view('/app/views/home/index');
         }
     }
 
