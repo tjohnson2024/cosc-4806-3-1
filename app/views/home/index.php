@@ -4,6 +4,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>Hey</h1>
+                <ul>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="registration.php">Register</a></li>
+                </ul>
                 <p class="lead"> <?= date("F jS, Y"); ?></p>
             </div>
         </div>

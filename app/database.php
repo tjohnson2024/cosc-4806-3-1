@@ -1,5 +1,5 @@
 <?php
-
+require_once ('app/core/config.php');
 /* database connection stuff here
  * 
  */
